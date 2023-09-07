@@ -17,6 +17,7 @@ func main() {
 	}
 
 	mux.Handle("/", http.FileServer(http.Dir(".")))
+	mux.Handle("/assets/logo.png", http.FileServer(http.Dir(".")))
 
 	log.Printf("Serving on port: %s\n", port)
 	log.Fatal(srv.ListenAndServe())

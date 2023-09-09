@@ -37,3 +37,22 @@ A fileserver is a kind of simple web server that serves static files from the ho
 
 1. Create file 'index.html'
 2. Add line in 'main.go': `mux.Handle("/", http.FileServer(http.Dir("."))) `
+
+## Custom Handlers
+
+An http.Handler is any type that implements the ServeHTTP method:
+
+```go
+type Handler interface {
+    ServeHTTP(ResponseWriter, *Request)
+}
+```
+
+The http.ServeMux is an http.Handler
+You use a Handler for more complex use cases, such as:
+
+- Implement custom router
+- Middleware
+- any other custom logic
+
+You will tipically use a HandlerFunc when you want to implement a simple handler.

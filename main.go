@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
+	const filepathRoot = "."
 	const port = "8081"
 
 	mux := http.NewServeMux()
@@ -19,7 +20,7 @@ func main() {
 	mux.Handle("/", http.FileServer(http.Dir(".")))
 	mux.Handle("/assets/logo.png", http.FileServer(http.Dir(".")))
 
-	log.Printf("Serving on port: %s\n", port)
+	log.Printf("Serving files from %s on port: %s\n", filepathRoot, port)
 	log.Fatal(srv.ListenAndServe())
 }
 
@@ -35,4 +36,3 @@ func middlewareCors(next http.Handler) http.Handler {
 		next.ServeHTTP(w, r)
 	})
 }
-
